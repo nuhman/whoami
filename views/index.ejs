@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Request Header Parser</title>
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <p><strong>IP ADDRESS: </strong><span id="ip"><%= ip %></span></p>
+            <p><Strong>LANGUAGE: </Strong><span id="lang"></span></p>
+            <p><strong>OS:</strong> <span id="os"></span></p>
+        </div>        
+    </body>
+    <script>
+        var language = window.navigator.userLanguage || window.navigator.language;
+        var ele = document.getElementById("lang");
+        ele.innerHTML = language;
+        var os = window.navigator.userAgent;
+        os = os.substring(os.indexOf("(")+1, os.indexOf(")"));
+        ele = document.getElementById("os");
+        ele.innerHTML = os;
+    </script>
+</html>
