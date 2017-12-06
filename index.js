@@ -1,18 +1,20 @@
 const express = require('express');
-const bodyparser = require('body-parser');
+const ip = require('request-ip');
+const ua = require('useragent');
 const app = express();
 
-app.use(bodyparser.urlencoded({extended: false}));
-app.use(bodyparser.json());
-//app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get("/", (req, res) => {
     //res.sendFile(__dirname + '\\index.html');
-    res.render("index.ejs", {ip: req.connection.remoteAddress});
-    //res.send(req.connection.remoteAddress);
-    //var language = window.navigator.userLanguage || window.navigator.language;    
-    //res.send(language);
+     var data = {
+        ip_: ip.getClientIp(req),
+        lang: req.headers["accept-language"].split(",")[0],
+        os: ua.parse(req.headers['user-agent']).os.family
+    }    
+    res.render("index.ejs", {data: data});
+    //res.send(req.connection.remoteAddress);    
 });
 
 app.listen(process.env.PORT || 3000, () => {
