@@ -6,18 +6,18 @@
     </head>
     <body>
         <div class="container">
-            <p><strong>IP ADDRESS: </strong><span id="ip"><%= ip %></span></p>
-            <p><Strong>LANGUAGE: </Strong><span id="lang"></span></p>
-            <p><strong>OS:</strong> <span id="os"></span></p>
+            <p><strong>IP ADDRESS: </strong><span id="ip"><%= data.ip_ %></span></p>
+            <p><Strong>LANGUAGE: </Strong><span id="lang"><%= data.lang %></span></p>
+            <p><strong>OS:</strong> <span id="os"><%= data.os %></span></p>
         </div>        
     </body>
     <script>
         var language = window.navigator.userLanguage || window.navigator.language;
         var ele = document.getElementById("lang");
-        ele.innerHTML = language;
+        //ele.innerHTML = language;
         var os = window.navigator.userAgent;
         os = os.substring(os.indexOf("(")+1, os.indexOf(")"));
         ele = document.getElementById("os");
-        ele.innerHTML = os;
+        //ele.innerHTML = os;
     </script>
 </html>
