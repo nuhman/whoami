@@ -3,17 +3,19 @@ const ip = require('request-ip');
 const ua = require('useragent');
 const app = express();
 
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
+//app.set('view engine', 'ejs');
+//app.use(express.static('public'));
 
 app.get("/", (req, res) => {
     //res.sendFile(__dirname + '\\index.html');
      var data = {
-        ip_: ip.getClientIp(req),
-        lang: req.headers["accept-language"].split(",")[0],
+        ip_address: ip.getClientIp(req),
+        language: req.headers["accept-language"].split(",")[0],
         os: ua.parse(req.headers['user-agent']).os.family
-    }    
-    res.render("index.ejs", {data: data});
+    } 
+     res.setHeader('content-type', 'application/json');
+     res.json(data);
+    //res.render("index.ejs", {data: data});
     //res.send(req.connection.remoteAddress);    
 });
 
